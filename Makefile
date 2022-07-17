@@ -1,5 +1,5 @@
 NAME = libftprint.a
-# INCLUDE = libftprint.h
+# INCLUDE = printf.h
 SRCS =
 OBJS = $(SRCS:.c=.o)
 LOBJS = $(wildcard libft/*.o)
