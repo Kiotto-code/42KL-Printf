@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:56:53 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/20 17:57:47 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/20 22:29:45 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ static void	ft_subflag(char c, t_flag *fmt)
 				fmt->width = fmt->width * 10 + c - '0';
 		}
 	}
+	else if (c == '#')
+		fmt->hash += 1;
+	else if (c == '-')
+		fmt->minus += 1;
+	else if (c == ' ')
+		fmt->space += 1;
+	else if (c == '+')
+		fmt->plus += 1;
+	else if (c == '.')
+		fmt->dot += 1;
 }
 
 // go through all the character one by o
@@ -57,7 +67,8 @@ static char *main_reader(char *str, t_flag *fmt)
 		ft_subflag(*str, fmt);
 		str++;
 	}
-	// if (*str == 'c')
+	if (*str == 'c')
+		ft_printfc(fmt);
 	// else if (*str == 's')
 	// else if (*str == 'p')
 	// else if (*str == 'd')
@@ -68,8 +79,6 @@ static char *main_reader(char *str, t_flag *fmt)
 	// else if (*str == '%')
 	return (str);
 }
-
-
 
 int	ft_printf(const char *str, ...)
 {
@@ -90,11 +99,15 @@ int	ft_printf(const char *str, ...)
 			state_setup(fmt);
 		}
 		else if(counter++)
-		{
 			ft_putchar_fd(*str++,1);
-		}
 	}
 	va_end(fmt->args);
 	free(fmt);
 	return (counter);
+}
+
+int main(void)
+{
+    ft_printf("%c",'a');
+    return (0);
 }

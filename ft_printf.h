@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:06:11 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/19 23:07:04 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/20 21:01:43 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ typedef struct s_flag
 }	t_flag;
 
 int	ft_printf(const char *format, ...);
+int ft_printfc(t_flag *fmt);
 
 #endif
