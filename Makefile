@@ -1,24 +1,31 @@
-NAME = libftprint.a
-# INCLUDE = printf.h
-SRCS =
-OBJS = $(SRCS:.c=.o)
-LOBJS = $(wildcard libft/*.o)
+NAME = libftprintf.a
+SOURCES = ft_printf.c 
+OBJECTS = $(SOURCES:.c=.o)
+LIBFT_OBJECTS = libft/*.o
 
 CC = gcc
-CFLAGS = -Wall - Werror -Wextra
-RM = rm -f 
+CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJS) libft
-	ar rcs $(NAME) $(OBJS) $(LOBJS)
+bonus: $(NAME)
+
+$(NAME): $(OBJECTS) libft
+	$(AR) -r $@ $(OBJECTS) $(LIBFT_OBJECTS)
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) $?
+
+libft:
+	make -C libft
 
 clean:
-	$(RM) $(OBJS)
+	rm -f $(OBJECTS)
+	make -C libft clean
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME) libft/libft.a
 
 re: fclean all
 
-.PHONY: clean fclean re all
+.PHONY: all bonus libft clean fclean re
