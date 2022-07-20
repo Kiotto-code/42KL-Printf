@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:56:53 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/20 17:34:50 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/20 17:57:47 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,13 @@ int	ft_printf(const char *str, ...)
 {
 	int		counter;
 	t_flag	*fmt;
-	va_list	args;
-
+	
 	counter = 0;
 	fmt = malloc(sizeof(t_flag));
 	if (!fmt)
 		return (0);
 	state_setup(fmt);
-	va_start(args, str);
+	va_start(fmt->args, str);
 	while (*str)
 	{
 		if (*str == '%')
