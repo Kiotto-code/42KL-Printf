@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:56:53 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/20 16:37:24 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/20 17:34:50 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	ft_subflag(char c, t_flag *fmt)
 //  if detect flags symbols
 // apply the relevant function when go 
 //through each conversion-type(using 'ft_strchr')
-static char	main_reader(char *str, t_flag *fmt)
+static char *main_reader(char *str, t_flag *fmt)
 {
 	while (*str && !ft_strchr("cspdiuxX%", *str))
 	{
@@ -66,11 +66,14 @@ static char	main_reader(char *str, t_flag *fmt)
 	// else if (*str == 'x')
 	// else if (*str == 'X')
 	// else if (*str == '%')
+	return (str);
 }
+
+
 
 int	ft_printf(const char *str, ...)
 {
-	int		ret;
+	int		counter;
 	t_flag	*fmt;
 	va_list	args;
 
@@ -87,14 +90,12 @@ int	ft_printf(const char *str, ...)
 			str = main_reader((char *)str, fmt);
 			state_setup(fmt);
 		}
-		else
+		else if(counter++)
 		{
-			ft_putchar(*str++,1);
-			str++;
-			counter ++;
+			ft_putchar_fd(*str++,1);
 		}
 	}
-	va_end(fmt->ap);
+	va_end(fmt->args);
 	free(fmt);
 	return (counter);
 }
