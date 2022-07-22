@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/libft.h"
-#include <stdarg.h>
 
 /*intialize the variable for format modification*/
 static void	state_setup(t_flag *fmt)
