@@ -1,7 +1,0 @@
-NAME = libftprint.a
-CC = gcc
-CFLAGS = -Wall -Werror Wextra
-AR = ar rcs
-
-LIBFTDIR
-BONUSDIR

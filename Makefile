@@ -1,31 +1,57 @@
-NAME = libftprintf.a
-SOURCES = ft_printf.c 
-OBJECTS = $(SOURCES:.c=.o)
-LIBFT_OBJECTS = libft/*.o
+NAME		=	libftprintf.a
+LIBFT		=	libft.a
+ARRC		=	ar rcs
+CC			=	gcc
+RM			=	rm -f
+CFLAGS		=	-Wall -Wextra -Werror -I.
+# HEADER		=	-I $(SRCS_DIR)ft_printf.h
+SRCS_FILES	=	ft_printf \
+				ft_printfc \
+				ft_prints \
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
+OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
+BONUS_FILES	=	ft_printf \
+				ft_printfc \
+				ft_prints \
+				
+BONUS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
+BOBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
+# BONUS		= 	$(addprefix $(BONUS_DIR), $(addsuffix .c, $(BONUS_FILES)))
+# BOBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(BONUS_FILES)))
+SRCS_DIR	=	srcs/
+LIBFT_DIR	=	libft
+OBJS_DIR	=	objs/
+BONUS_DIR	=	bonus/
 
-all: $(NAME)
+all:			$(NAME)
 
-bonus: $(NAME)
+$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
+				$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJECTS) libft
-	$(AR) -r $@ $(OBJECTS) $(LIBFT_OBJECTS)
+$(OBJS_DIR)%.o: $(BONUS_DIR)%.c
+				$(CC) $(CFLAGS) -c $< -o $@
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $?
+$(NAME):		mkdir_objs create_libft $(OBJS)
+				$(ARRC) $(NAME) $(OBJS)
 
-libft:
-	make -C libft
+bonus:			mkdir_objs create_libft $(BOBJS)
+				$(ARRC) $(NAME) $(BOBJS)
+
+create_libft:
+				make -C $(LIBFT_DIR)
+				cp $(LIBFT_DIR)/$(LIBFT) .
+				mv $(LIBFT) $(NAME)
+
+mkdir_objs:
+				mkdir -p $(OBJS_DIR)
 
 clean:
-	rm -f $(OBJECTS)
-	make -C libft clean
+				rm -rf $(OBJS_DIR)
+				make fclean -C $(LIBFT_DIR)
 
-fclean: clean
-	rm -f $(NAME) libft/libft.a
+fclean:			clean
+				rm -rf $(NAME)
+				rm -rf $(LIBFT)
 
-re: fclean all
-
-.PHONY: all bonus libft clean fclean re
+re:				fclean all
