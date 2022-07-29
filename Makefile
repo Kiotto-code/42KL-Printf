@@ -3,17 +3,22 @@ LIBFT		=	libft.a
 ARRC		=	ar rcs
 CC			=	gcc
 RM			=	rm -f
-CFLAGS		=	-Wall -Wextra -Werror -I.
-# HEADER		=	-I $(SRCS_DIR)ft_printf.h
+CFLAGS		=	-Wall -Wextra -Werror -I ${SRCS_DIR}ft_printf.h
 SRCS_FILES	=	ft_printf \
 				ft_printfc \
 				ft_prints \
+				ft_printfp \
+				ft_extrafunct \
+
 
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
 BONUS_FILES	=	ft_printf \
 				ft_printfc \
 				ft_prints \
+				ft_printfp \
+				ft_extrafunct \
+
 				
 BONUS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 BOBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
@@ -55,3 +60,5 @@ fclean:			clean
 				rm -rf $(LIBFT)
 
 re:				fclean all
+
+.PHONY: 		all clean fclean re

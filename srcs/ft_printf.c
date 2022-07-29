@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:56:53 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/27 20:49:23 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/29 22:13:29 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void	state_setup(t_flag *fmt)
 	fmt->space = 0;
 	fmt->plus = 0;
 	fmt->dot = 0;
-	fmt->box=0;
+	fmt->box = 0;
+	fmt->hole = 0;
 }
 
 //modified the format when go through flags instead of conversion-type
@@ -70,8 +71,9 @@ static char *main_reader(char *str, t_flag *fmt)
 	if (*str == 'c')
 		ft_printfc(fmt);
 	else if (*str == 's')
-		ft_prints(fmt);
-	// else if (*str == 'p')
+		ft_printfs(fmt);
+	else if (*str == 'p')
+		ft_printfp(fmt);
 	// else if (*str == 'd')
 	// else if (*str == 'i')
 	// else if (*str == 'u')

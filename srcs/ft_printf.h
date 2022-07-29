@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:06:11 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/27 20:12:28 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/29 23:26:32 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,15 @@ typedef struct s_flag
 	va_list		args;
 	size_t		box;
 	size_t		len;
+	size_t		hole;
 }	t_flag;
 
-int	ft_printf(const char *str, ...);
-void ft_printfc(t_flag *fmt);
-void ft_prints(t_flag *fmt);
+int		ft_printf(const char *str, ...);
+void	ft_printfc(t_flag *fmt);
+void	ft_printfs(t_flag *fmt);
+void    ft_printfp(t_flag *fmt);
+void	ft_printhexa(unsigned long long nbr);
+int 	ft_countlen(unsigned long long nbr, int base);
+
 
 #endif

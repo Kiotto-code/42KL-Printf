@@ -6,13 +6,13 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 20:10:52 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/27 21:17:48 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/28 20:24:39 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void     ft_prints(t_flag *fmt)
+void     ft_printfs(t_flag *fmt)
 {
     char *str;
     
