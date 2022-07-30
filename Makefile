@@ -9,8 +9,8 @@ SRCS_FILES	=	ft_printf \
 				ft_prints \
 				ft_printfp \
 				ft_printfd \
+				ft_printfi \
 				ft_extrafunct \
-
 
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
