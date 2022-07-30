@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:56:53 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/29 22:13:29 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/30 16:08:15 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ static char *main_reader(char *str, t_flag *fmt)
 		ft_printfs(fmt);
 	else if (*str == 'p')
 		ft_printfp(fmt);
-	// else if (*str == 'd')
+	else if (*str == 'd')
+		ft_printfd(fmt);
 	// else if (*str == 'i')
 	// else if (*str == 'u')
 	// else if (*str == 'x')

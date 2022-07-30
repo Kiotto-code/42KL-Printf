@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 21:37:23 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/29 23:26:24 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/30 15:51:32 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,19 @@ void    ft_printhexa(unsigned long long nbr)
     ft_putchar_fd(hexa[nbr%16], 1);
 }
 
-int ft_countlen(unsigned long long nbr, int base)
+int     ft_countlen(unsigned long long nbr, int base)
 {
     if (!(nbr/base))
         return (1);
     return (1 + ft_countlen(nbr/base,base));
 }
 
+void    printdbox(t_flag *fmt)
+{
+    while (fmt->zero && fmt->box-- && !fmt->dot)
+        ft_putchar_fd('0', 1);
+    while (!fmt->zero && fmt->box--)
+        ft_putchar_fd(' ', 1);
+    while (fmt->dot && fmt->precision--)
+        ft_putchar_fd('0', 1);
+}
