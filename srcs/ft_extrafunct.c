@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 21:37:23 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/30 15:51:32 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/30 19:35:27 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    ft_printhexa(unsigned long long nbr)
     ft_putchar_fd(hexa[nbr%16], 1);
 }
 
-int     ft_countlen(unsigned long long nbr, int base)
+int     ft_countlen(unsigned long nbr, int base)
 {
     if (!(nbr/base))
         return (1);

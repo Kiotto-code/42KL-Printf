@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 19:09:18 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/29 16:18:50 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/30 19:35:41 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void    ft_printfp(t_flag *fmt)
 {
-    unsigned long long  pointer;
+    unsigned long  pointer;
     size_t              pointerlen;
     
-    pointer = va_arg(fmt->args, unsigned long long);
-    pointerlen = ft_countlen((size_t)pointer,16) +2;
+    pointer = va_arg(fmt->args, unsigned long);
+    pointerlen = ft_countlen((unsigned long)pointer,16) +2;
     if (fmt->width > pointerlen)
         fmt->box = fmt->width - pointerlen;
     fmt->len += fmt->box + pointerlen;

@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:06:11 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/30 16:08:45 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/30 19:37:04 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_printfs(t_flag *fmt);
 void    ft_printfp(t_flag *fmt);
 void    ft_printfd(t_flag *fmt);
 void	ft_printhexa(unsigned long long nbr);
-int 	ft_countlen(unsigned long long nbr, int base);
+int 	ft_countlen(unsigned long nbr, int base);
 void    printdbox(t_flag *fmt);
 
 
