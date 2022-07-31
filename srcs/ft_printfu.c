@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printfi.c                                       :+:      :+:    :+:   */
+/*   ft_printfu.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/30 20:02:24 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/31 20:17:51 by yichan           ###   ########.fr       */
+/*   Created: 2022/07/31 17:10:54 by yichan            #+#    #+#             */
+/*   Updated: 2022/07/31 17:45:10 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void    ft_printfi(t_flag *fmt)
+void    ft_printfu(t_flag *fmt)
 {
     int nbrlen;
     int fulllen;
@@ -31,7 +31,5 @@ void    ft_printfi(t_flag *fmt)
     if (fmt->width  > (size_t)fulllen)
         fmt->box = fmt->width - fulllen;
     fmt->len += fmt->box + fmt->precision + fulllen;
-    if (fmt->space)
-        fmt->box--;
-    ft_checkdash(fmt, nbr, absolute);
+    ft_checkdash(fmt, nbr);
 }

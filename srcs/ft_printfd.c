@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:50:14 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/30 22:28:26 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/31 18:58:32 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,8 @@ void    ft_printfd(t_flag *fmt)
     fulllen = 0;
     nbr = va_arg(fmt->args, int);
     if (nbr < 0)
-    {
-        absolute = -nbr;
         fulllen++;
-    }
-    else
-        absolute = nbr;
+    absolute = ft_absolute(nbr);
     nbrlen = ft_countlen((unsigned long)absolute, 10);
     fulllen += nbrlen;
     if (fmt->precision >= (size_t)nbrlen)
@@ -36,5 +32,11 @@ void    ft_printfd(t_flag *fmt)
     if (fmt->width  > (size_t)fulllen)
         fmt->box = fmt->width - fulllen;
     fmt->len += fmt->box + fmt->precision + fulllen;
-    ft_checkdash(fmt, nbr);
+    if (fmt->space)
+        fmt->box--;
+    // if (fmt->space && nbr>0)
+    //     fmt->len++;
+    // if (fmt -> space && !fmt -> plus && !(nbr<0))
+    //     write (1, " ", 1);
+    ft_checkdash(fmt, nbr, absolute);
 }

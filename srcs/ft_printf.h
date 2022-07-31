@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:06:11 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/30 21:47:50 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/31 20:20:00 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,19 @@ typedef struct s_flag
 	size_t		hole;
 }	t_flag;
 
-int		ft_printf(const char *str, ...);
-void	ft_printfc(t_flag *fmt);
-void	ft_printfs(t_flag *fmt);
-void    ft_printfp(t_flag *fmt);
-void    ft_printfd(t_flag *fmt);
-void	ft_printfi(t_flag *fmt);
-void	ft_printhexa(unsigned long long nbr);
-int 	ft_countlen(unsigned long nbr, int base);
-void    printdbox(t_flag *fmt);
-void	ft_checkdash(t_flag *fmt, long nbr);
+int				ft_printf(const char *str, ...);
+void			ft_printfc(t_flag *fmt);
+void			ft_printfs(t_flag *fmt);
+void			ft_printfp(t_flag *fmt);
+void			ft_printfd(t_flag *fmt);
+void			ft_printfi(t_flag *fmt);
+void			ft_printfu(t_flag *fmt);
+void			ft_printhexa(unsigned long long nbr);
+int 			ft_countlen(unsigned long nbr, int base);
+void			printdbox(t_flag *fmt, long nbr);
+void			ft_checkdash(t_flag *fmt, long nbr, unsigned long absolute);
+void    		ft_checksign(t_flag *fmt, long nbr);
+unsigned long   ft_absolute(long nbr);
 
 
 #endif

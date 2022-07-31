@@ -10,6 +10,7 @@ SRCS_FILES	=	ft_printf \
 				ft_printfp \
 				ft_printfd \
 				ft_printfi \
+				ft_printfu \
 				ft_extrafunct \
 
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
