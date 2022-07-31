@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 21:37:23 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/31 23:21:54 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/31 23:43:23 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,12 @@ void	ft_checkdash(t_flag *fmt, long nbr, unsigned long absolute)
 		ft_checksign(fmt, nbr);
 		while (fmt->dot && fmt->precision--)
 			ft_putchar_fd('0', 1);
+		if (fmt->dot, absolute == 0)
+			write (1, ' ', 1);
+			absolute = NULL;
 		if (absolute == 2147483648)
 			write (1, "2147483648", 10);
-		else
+		else if(!(fmt->dot && nbr==0))
 			ft_putnbr_fd((absolute), 1);
 		printdbox(fmt, nbr);
 	}
