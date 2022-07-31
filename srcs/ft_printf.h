@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:06:11 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/31 20:20:00 by yichan           ###   ########.fr       */
+/*   Updated: 2022/07/31 22:50:58 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdarg.h>
 # include "libft.h"
+# include <stdio.h>
 
 typedef struct s_flag
 {
@@ -40,11 +41,10 @@ void			ft_printfd(t_flag *fmt);
 void			ft_printfi(t_flag *fmt);
 void			ft_printfu(t_flag *fmt);
 void			ft_printhexa(unsigned long long nbr);
-int 			ft_countlen(unsigned long nbr, int base);
+size_t			ft_countlen(unsigned long nbr, int base);
 void			printdbox(t_flag *fmt, long nbr);
 void			ft_checkdash(t_flag *fmt, long nbr, unsigned long absolute);
-void    		ft_checksign(t_flag *fmt, long nbr);
-unsigned long   ft_absolute(long nbr);
-
+void			ft_checksign(t_flag *fmt, long nbr);
+unsigned long	ft_absolute(long nbr);
 
 #endif
