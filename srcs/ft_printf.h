@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:06:11 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/31 22:50:58 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/02 19:24:02 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ typedef struct s_flag
 	size_t		box;
 	size_t		len;
 	size_t		hole;
+	size_t		precisionstate;
+	size_t		precisexist;
+	long		limit;
+	char *		ascii;
 }	t_flag;
 
 int				ft_printf(const char *str, ...);
@@ -46,5 +50,10 @@ void			printdbox(t_flag *fmt, long nbr);
 void			ft_checkdash(t_flag *fmt, long nbr, unsigned long absolute);
 void			ft_checksign(t_flag *fmt, long nbr);
 unsigned long	ft_absolute(long nbr);
+void			precise(t_flag *fmt);
+char			*ft_uitoa(unsigned long nb, t_flag *fmt);
+void 			flagadjust(t_flag *fmt, size_t fulllen,long nbr,unsigned long absolute);
+void			ft_putascii(t_flag *fmt, char *ascii);
+
 
 #endif

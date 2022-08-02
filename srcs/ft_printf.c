@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:56:53 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/30 21:49:45 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/02 21:38:04 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	state_setup(t_flag *fmt)
 {
 	fmt->width = 0;
 	fmt->precision = 0;
+	fmt->precisionstate = 0;
+	fmt->precisexist = 0;
 	fmt->hash = 0;
 	fmt->zero = 0;
 	fmt->minus = 0;
@@ -26,6 +28,7 @@ static void	state_setup(t_flag *fmt)
 	fmt->dot = 0;
 	fmt->box = 0;
 	fmt->hole = 0;
+	fmt->limit = 0;
 }
 
 //modified the format when go through flags instead of conversion-type
@@ -34,7 +37,10 @@ static void	ft_subflag(char c, t_flag *fmt)
 	if (ft_isdigit(c))
 	{
 		if (fmt->dot)
+		{
 			fmt->precision = fmt->precision * 10 + c - '0';
+			fmt->precisexist = 1;
+		}
 		else
 		{
 			if (!fmt->width && c == '0')
