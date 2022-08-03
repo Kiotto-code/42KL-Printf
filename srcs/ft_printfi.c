@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 20:02:24 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/02 22:50:56 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/03 17:23:40 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,17 @@ void    flagadjust(t_flag *fmt, size_t fulllen,long nbr,unsigned long absolute)
 	if (fmt->width  > (size_t)fulllen)
 		fmt->box = fmt->width - fulllen - fmt->precision;
 	if (fmt->precision < fmt->width)
+	{
 		fmt->len += fmt->box + fmt->precision + fulllen;
+		if (fmt->width == fmt->precisionstate && fmt->precisexist && nbr < 0 && !fmt->zero)
+			fmt->len++;
+		if (fmt->width < fmt->precisionstate && fmt->precisexist && nbr > 0 && fmt->zero)
+			fmt->len++;
+	}
 	else
 		fmt->len += fmt->precision + fulllen;
+	// if (fmt->width == fmt->precisionstate && fmt->precisexist && nbr < 0)
+	// 	fmt->len++;
 	if	((fmt->minus && fmt->zero) || fmt->precision >= fmt->box)
 		fmt->zero = 0;
 	if	(fmt->space && fmt->dot)
@@ -28,8 +36,8 @@ void    flagadjust(t_flag *fmt, size_t fulllen,long nbr,unsigned long absolute)
 		fmt->limit --;
 	if (fmt->zero && fmt->precision < fmt->width && fmt->precisexist)
 		fmt->zero = 0;
-	fmt->precisionstate = fmt->precision;
-	// printf("B$: %zu",fmt->precisionstate);
+	if ((fmt->plus && nbr >= 0))
+		fmt->len++;
 	ft_checkdash(fmt, nbr, absolute);
 }
 
@@ -40,14 +48,15 @@ void	ft_printfi(t_flag *fmt)
 	long nbr;
 	unsigned long absolute;
 
+	fmt->precisionstate = fmt->precision;
 	fulllen = 0;
 	nbr = (long)va_arg(fmt->args, int);
-	if (nbr == 0 && fmt->dot && !fmt->width)
+	if (nbr == 0 && fmt->dot && !fmt->width && !fmt->precision)
 		return ;
 	if (nbr < 0)
 		fulllen++;
 	absolute = ft_absolute(nbr);
-	nbrlen = ft_countlen((unsigned long)absolute, 10);
+	nbrlen = ft_countlen(absolute, 10);
 	if (nbrlen > fmt->precision)
 		fmt->limit += fmt->precision;
 	fulllen += nbrlen;

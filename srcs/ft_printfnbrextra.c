@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:47:32 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/02 22:26:28 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/03 16:12:43 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	printdbox(t_flag *fmt, long nbr)
 {
 	if (!fmt->minus && fmt->box)
 	{
-		while (!fmt->zero && fmt->box--)
+		while (!fmt->zero && (long)fmt->box-->0)
 			write (1, " ", 1);
 		if (nbr<0 && fmt->zero)
 		{
 			nbr = -nbr;
 			write (1, "-", 1);
 		}
-		while (fmt->zero && fmt->box--)
+		while (fmt->zero && (long)fmt->box-->0)
 			write (1, "0", 1);
 	}
 	else if (fmt->minus && fmt->box)
 	{
-		while (!fmt->zero && fmt->minus && fmt->box--)
+		while (!fmt->zero && fmt->minus && (long)fmt->box-->0)
 				write (1, " ", 1);
 	}
 }
@@ -59,6 +59,7 @@ void	ft_checkdash(t_flag *fmt, long nbr, unsigned long absolute)
 	char *ascii;
 
 	ascii = ft_uitoa(absolute, fmt);
+	// printf("res: %s", "ascii");
 	if (!fmt->minus && fmt->zero)
 	{
 		ft_checksign(fmt,nbr);
