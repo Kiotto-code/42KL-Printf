@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:56:53 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/03 16:15:52 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/04 17:18:14 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	state_setup(t_flag *fmt)
 	fmt->limit = 0;
 }
 
-//modified the format when go through flags instead of conversion-type
+/*/modified the format when go through flags instead of conversion-type*/
 static void	ft_subflag(char c, t_flag *fmt)
 {
 	if (ft_isdigit(c))
@@ -61,12 +61,12 @@ static void	ft_subflag(char c, t_flag *fmt)
 		fmt->dot += 1;
 }
 
-// go through all the character one by o
+/*// go through all the character one by o
 // ne to check its flag and conversion type
 // call subflag('ft_subflag') function
 //  if detect flags symbols
 // apply the relevant function when go 
-//through each conversion-type(using 'ft_strchr')
+//through each conversion-type(using 'ft_strchr')**/
 static char *main_reader(char *str, t_flag *fmt)
 {
 	while (*str && !ft_strchr("cspdiuxX%", *str))
@@ -84,10 +84,6 @@ static char *main_reader(char *str, t_flag *fmt)
 		ft_printfi(fmt);
 	else if (*str == 'i')
 		ft_printfi(fmt);
-	// else if (*str == 'u')
-	// else if (*str == 'x')
-	// else if (*str == 'X')
-	// else if (*str == '%')
 	return (str+1);
 }
 

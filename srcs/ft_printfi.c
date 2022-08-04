@@ -6,34 +6,14 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 20:02:24 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/04 17:10:42 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/04 17:37:17 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void    flagadjust(t_flag *fmt, size_t fulllen,long nbr,unsigned long absolute)
+static void	flagadjust(t_flag *fmt, long nbr, unsigned long absolute)
 {
-	if (fmt->width  > (size_t)fulllen)
-		fmt->box = fmt->width - fulllen - fmt->precision;
-	if (fmt->precision < fmt->width)
-	{
-		fmt->len += fmt->box + fmt->precision + fulllen;
-		if (fmt->width == fmt->precisionstate && fmt->precisexist && nbr < 0 && !fmt->zero)
-			fmt->len++;
-		else if (fmt->width < fmt->precisionstate && fmt->precisexist && nbr > 0 && fmt->zero)
-			fmt->len++;
-		else if (fmt->zero && nbr <0 && fmt->precisionstate == fmt->width && fmt->zero)
-			fmt->len++;
-		// if (fmt->zero && fmt->width == fmt->precisionstate && nbr < 0)
-		// 	fmt->len--;
-		// if (fmt->width == fmt->precisionstate && fmt->precisexist && nbr < 0 && fmt->zero)
-		// 	fmt->len++;
-	}
-	else
-		fmt->len += fmt->precision + fulllen;
-	// if (fmt->width == fmt->precisionstate && fmt->precisexist && nbr < 0)
-	// 	fmt->len++;
 	if	((fmt->minus && fmt->zero) || fmt->precision >= fmt->box)
 		fmt->zero = 0;
 	if	(fmt->space && fmt->dot)
@@ -46,6 +26,26 @@ void    flagadjust(t_flag *fmt, size_t fulllen,long nbr,unsigned long absolute)
 		fmt->len++;
 	ft_checkdash(fmt, nbr, absolute);
 }
+
+static void	lenadjust(t_flag *fmt, size_t fulllen, long nbr, unsigned long absolute)
+{
+	if (fmt->width  > (size_t)fulllen)
+		fmt->box = fmt->width - fulllen - fmt->precision;
+	if (fmt->precision < fmt->width)
+	{
+		fmt->len += fmt->box + fmt->precision + fulllen;
+		if (fmt->width == fmt->precisionstate && fmt->precisexist && nbr < 0 && !fmt->zero)
+			fmt->len++;
+		else if (fmt->width < fmt->precisionstate && fmt->precisexist && nbr > 0 && fmt->zero)
+			fmt->len++;
+		else if (fmt->zero && nbr <0 && fmt->precisionstate == fmt->width && fmt->zero)
+			fmt->len++;
+	}
+	else
+		fmt->len += fmt->precision + fulllen;
+	flagadjust(fmt, nbr, absolute);
+}
+
 
 void	ft_printfi(t_flag *fmt)
 {
@@ -72,5 +72,5 @@ void	ft_printfi(t_flag *fmt)
 		fmt->precision = 0;
 	if (fmt->precisionstate == nbrlen && fmt->zero && nbr <0)
 		fmt->len--;
-	flagadjust(fmt,  fulllen, nbr, absolute);
+	lenadjust(fmt,  fulllen, nbr, absolute);
 }

@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:06:11 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/03 13:55:43 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/04 17:36:17 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void			ft_checksign(t_flag *fmt, long nbr);
 unsigned long	ft_absolute(long nbr);
 void			precise(t_flag *fmt);
 char			*ft_uitoa(unsigned long nb, t_flag *fmt);
-void 			flagadjust(t_flag *fmt, size_t fulllen,long nbr,unsigned long absolute);
+// void 			flagadjust(t_flag *fmt, size_t fulllen,long nbr,unsigned long absolute);
 void			ft_putascii(t_flag *fmt, char *ascii);
 
 
