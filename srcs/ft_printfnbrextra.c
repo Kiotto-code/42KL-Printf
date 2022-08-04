@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:47:32 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/03 21:11:44 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/04 19:14:40 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,34 @@ void	printdbox(t_flag *fmt, long nbr)
 {
 	if (!fmt->minus && fmt->box)
 	{
-		while (!fmt->zero && (long)fmt->box-->0)
+		while (!fmt->zero && (long)fmt->box-- > 0)
 			write (1, " ", 1);
-		if (nbr<0 && fmt->zero)
+		if (nbr < 0 && fmt->zero)
 		{
 			nbr = -nbr;
 			write (1, "-", 1);
 		}
-		while (fmt->zero && (long)fmt->box-->0)
+		while (fmt->zero && (long)fmt->box-- > 0)
 			write (1, "0", 1);
 	}
 	else if (fmt->minus && fmt->box)
 	{
-		while (!fmt->zero && fmt->minus && (long)fmt->box-->0)
-				write (1, " ", 1);
+		while (!fmt->zero && fmt->minus && (long)fmt->box-- > 0)
+			write (1, " ", 1);
 	}
 }
 
 void	precise(t_flag *fmt)
 {
-		while (fmt->precision--)
-			write (1, "0", 1);
+	while (fmt->precision--)
+		write (1, "0", 1);
 }
 
 void	ft_checksign(t_flag *fmt, long nbr)
 {
 	if (fmt->space && nbr >= 0)
 		fmt->len++;
-	if (nbr<0 && !fmt->zero)
+	if (nbr < 0 && !fmt->zero)
 	{
 		write (1, "-", 1);
 		nbr = -nbr;
@@ -56,13 +56,12 @@ void	ft_checksign(t_flag *fmt, long nbr)
 
 void	ft_checkdash(t_flag *fmt, long nbr, unsigned long absolute)
 {
-	char *ascii;
+	char	*ascii;
 
 	ascii = ft_uitoa(absolute, fmt);
-	// printf("res: %s", "ascii");
 	if (!fmt->minus && fmt->zero)
 	{
-		ft_checksign(fmt,nbr);
+		ft_checksign(fmt, nbr);
 		printdbox(fmt, nbr);
 		precise(fmt);
 		ft_putstr_fd(ascii, 1);
@@ -70,13 +69,13 @@ void	ft_checkdash(t_flag *fmt, long nbr, unsigned long absolute)
 	else if (!fmt->minus && !fmt ->zero)
 	{
 		printdbox(fmt, nbr);
-		ft_checksign(fmt,nbr);
+		ft_checksign(fmt, nbr);
 		precise(fmt);
 		ft_putstr_fd(ascii, 1);
 	}
 	else if (fmt->minus)
 	{
-		ft_checksign(fmt,nbr);
+		ft_checksign(fmt, nbr);
 		precise(fmt);
 		ft_putstr_fd(ascii, 1);
 		printdbox(fmt, nbr);

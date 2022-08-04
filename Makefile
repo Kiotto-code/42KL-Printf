@@ -8,8 +8,8 @@ SRCS_FILES	=	ft_printf \
 				ft_printfc \
 				ft_prints \
 				ft_printfp \
-				ft_printfd \
 				ft_printfi \
+				ft_printfu \
 				ft_printfnbrextra \
 				ft_extrafunct \
 				ft_uitoa \

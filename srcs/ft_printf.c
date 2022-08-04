@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:56:53 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/04 17:48:24 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/04 19:23:34 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ static char	*main_reader(char *str, t_flag *fmt)
 		ft_printfi(fmt);
 	else if (*str == 'i')
 		ft_printfi(fmt);
+	else if (*str == 'u')
+		ft_printfu(fmt);
 	return (str +1);
 }
 
@@ -91,7 +93,7 @@ int	ft_printf(const char *str, ...)
 {
 	int		counter;
 	t_flag	*fmt;
-	
+
 	counter = 0;
 	fmt = malloc(sizeof(t_flag));
 	if (!fmt)
@@ -106,8 +108,8 @@ int	ft_printf(const char *str, ...)
 			str = main_reader((char *)str, fmt);
 			state_setup(fmt);
 		}
-		else if(++counter)
-			ft_putchar_fd(*str++,1);
+		else if (++counter)
+			ft_putchar_fd(*str++, 1);
 	}
 	va_end(fmt->args);
 	counter += fmt->len;
