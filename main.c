@@ -15,7 +15,11 @@ int main()
     // printf("%c", 's');
     // ft_printf(("%042.52x", 42000));
         
-    ft_printf("%010.20d", 4);
+    // ft_printf("%010.20d", 4);
+    // ft_printf(("%042.52x", 42000));
+    printf("|%d|",ft_printf("%02.2i", 0));
+    printf("|%d|",printf("%02.2i", 0));
+
     // printf("%010.20d", 42);
 
     return (0);

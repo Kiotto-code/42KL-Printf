@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 20:02:24 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/03 17:23:40 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/04 17:10:42 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,14 @@ void    flagadjust(t_flag *fmt, size_t fulllen,long nbr,unsigned long absolute)
 		fmt->len += fmt->box + fmt->precision + fulllen;
 		if (fmt->width == fmt->precisionstate && fmt->precisexist && nbr < 0 && !fmt->zero)
 			fmt->len++;
-		if (fmt->width < fmt->precisionstate && fmt->precisexist && nbr > 0 && fmt->zero)
+		else if (fmt->width < fmt->precisionstate && fmt->precisexist && nbr > 0 && fmt->zero)
 			fmt->len++;
+		else if (fmt->zero && nbr <0 && fmt->precisionstate == fmt->width && fmt->zero)
+			fmt->len++;
+		// if (fmt->zero && fmt->width == fmt->precisionstate && nbr < 0)
+		// 	fmt->len--;
+		// if (fmt->width == fmt->precisionstate && fmt->precisexist && nbr < 0 && fmt->zero)
+		// 	fmt->len++;
 	}
 	else
 		fmt->len += fmt->precision + fulllen;
@@ -64,5 +70,7 @@ void	ft_printfi(t_flag *fmt)
 		fmt->precision -= nbrlen;
 	else if (fmt->precision < nbrlen)
 		fmt->precision = 0;
+	if (fmt->precisionstate == nbrlen && fmt->zero && nbr <0)
+		fmt->len--;
 	flagadjust(fmt,  fulllen, nbr, absolute);
 }
