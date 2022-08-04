@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:56:53 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/04 17:18:14 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/04 17:48:24 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	ft_subflag(char c, t_flag *fmt)
 //  if detect flags symbols
 // apply the relevant function when go 
 //through each conversion-type(using 'ft_strchr')**/
-static char *main_reader(char *str, t_flag *fmt)
+static char	*main_reader(char *str, t_flag *fmt)
 {
 	while (*str && !ft_strchr("cspdiuxX%", *str))
 	{
@@ -84,7 +84,7 @@ static char *main_reader(char *str, t_flag *fmt)
 		ft_printfi(fmt);
 	else if (*str == 'i')
 		ft_printfi(fmt);
-	return (str+1);
+	return (str +1);
 }
 
 int	ft_printf(const char *str, ...)
