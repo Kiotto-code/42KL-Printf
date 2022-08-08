@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:06:11 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/04 18:50:28 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/08 15:35:55 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void			ft_printfp(t_flag *fmt);
 void			ft_printfd(t_flag *fmt);
 void			ft_printfi(t_flag *fmt);
 void			ft_printfu(t_flag *fmt);
-void			ft_printhexa(unsigned long long nbr);
+void			ft_printhexa(unsigned long long nbr, char *hex, t_flag *fmt);
+void			ft_printpointer(unsigned long long nbr, char *hexa);
 size_t			ft_countlen(unsigned long nbr, int base);
 void			printdbox(t_flag *fmt, long nbr);
 void			ft_checkdash(t_flag *fmt, long nbr, unsigned long absolute);
@@ -53,5 +54,8 @@ unsigned long	ft_absolute(long nbr);
 void			precise(t_flag *fmt);
 char			*ft_uitoa(unsigned long nb, t_flag *fmt);
 void			ft_putascii(t_flag *fmt, char *ascii);
+void			ft_printfx(t_flag *fmt, char *hexa);
+size_t			ft_max(int a, int b);
+
 
 #endif

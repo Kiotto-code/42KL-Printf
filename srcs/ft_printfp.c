@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 19:09:18 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/04 19:17:18 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/08 15:17:16 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_printfp(t_flag *fmt)
 	if (fmt->minus)
 	{
 		write(1, "0x", 2);
-		ft_printhexa(pointer);
+		ft_printpointer(pointer, "0123456789abcdef");
 		while (fmt->box--)
 			write(1, " ", 1);
 	}
@@ -34,6 +34,6 @@ void	ft_printfp(t_flag *fmt)
 		while (fmt->box--)
 			write(1, " ", 1);
 		write(1, "0x", 2);
-		ft_printhexa(pointer);
+		ft_printpointer(pointer, "0123456789abcdef");
 	}
 }

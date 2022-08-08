@@ -6,13 +6,47 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 17:14:54 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/31 17:15:29 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/08 17:59:43 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void    ft_printfh(t_flag fmt)
+void	ft_printfx(t_flag *fmt, char *hexa)
 {
-    
+	unsigned long	pointer;
+	size_t			pointerlen;
+
+	fmt->precisionstate = fmt->precision; 
+	pointer = va_arg(fmt->args, unsigned long);
+	pointerlen = ft_countlen((unsigned long)pointer, 16) + (fmt->hash && pointer!=0) * 2;
+	if (fmt->width >= fmt->precision && fmt->dot)
+		fmt->zero = 0;
+	if (fmt->width >= ft_max(pointerlen, fmt->precision))
+		fmt->box = fmt->width - ft_max(pointerlen, fmt->precision);
+	fmt->precision = (fmt->precision >= pointerlen)
+		* (fmt->precision - pointerlen);
+	fmt->len += fmt->box + pointerlen + fmt->precision;
+	if (fmt->minus && pointer == 0 && !fmt->precisionstate && fmt->dot && !fmt->width)
+		fmt->len --;
+	if (fmt->width && fmt->dot && !fmt->precisionstate && pointer == 0)
+		fmt->box ++;
+	if (fmt->width && fmt->dot && !fmt->precisionstate && pointer == 0 && !fmt->minus)
+		fmt->len ++;
+	if (fmt->minus)
+	{
+		if (fmt->hash && pointer != 0)
+			write(1, "0x", 2);
+		precise(fmt);
+		ft_printhexa(pointer, hexa, fmt);
+		printdbox (fmt, 1);
+	}
+	else
+	{
+		printdbox (fmt, 1);
+		if (fmt->hash && pointer != 0)
+			write(1, "0x", 2);
+		precise(fmt);
+		ft_printhexa(pointer, hexa, fmt);
+	}
 }

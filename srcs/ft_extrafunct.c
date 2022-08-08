@@ -6,21 +6,32 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 21:37:23 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/04 17:18:49 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/08 17:55:00 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printhexa(unsigned long long nbr)
+void	ft_printpointer(unsigned long long nbr, char *hexa)
 {
-	char	*hexa;
-
-	hexa = "0123456789abcdef";
 	if (nbr / 16)
-		ft_printhexa(nbr / 16);
+		ft_printpointer(nbr / 16, hexa);
 	ft_putchar_fd(hexa[nbr % 16], 1);
 }
+
+void	ft_printhexa(unsigned long long nbr, char *hexa, t_flag *fmt)
+{	
+	if (nbr == 0 && (!fmt->precisexist || !fmt->precisionstate) && fmt->dot)
+	{
+		if (!fmt->minus)
+			fmt->len --;
+		return ;
+	}
+	if (nbr / 16)
+		ft_printhexa(nbr / 16, hexa, fmt);
+	ft_putchar_fd(hexa[nbr % 16], 1);
+}
+
 
 size_t	ft_countlen(unsigned long nbr, int base)
 {
@@ -39,3 +50,11 @@ unsigned long	ft_absolute(long nbr)
 		absolute = nbr;
 	return (absolute);
 }
+
+size_t	ft_max(int a, int b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
