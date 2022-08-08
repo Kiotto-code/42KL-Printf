@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 20:02:24 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/04 20:55:56 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/08 19:53:14 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	lenadjust(t_flag *fmt, size_t fulllen, long nbr,
 
 void	ft_printfu(t_flag *fmt)
 {
-	unsigned long			nbrlen;
+	unsigned long	nbrlen;
 	size_t			fulllen;
 	long			nbr;
 	unsigned long	absolute;
