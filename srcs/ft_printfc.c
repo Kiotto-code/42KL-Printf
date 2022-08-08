@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:04:07 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/27 20:11:50 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/04 18:59:13 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 void	ft_printfc(t_flag *fmt)
 {
 	char	c;
-    
-    c = va_arg(fmt->args, int);
+
+	c = va_arg(fmt->args, int);
 	if (fmt->width > fmt->precision)
-        fmt->box = (fmt->width) -1;
-    fmt->len += fmt->box +1;
-    if (fmt->minus)
-    {
-        ft_putchar_fd(c, 1);
-        while (fmt->box--)
-            ft_putchar_fd(' ',1);
-    }
-    else
-    {
-        while (fmt->box--)
-            ft_putchar_fd(' ',1);
-        ft_putchar_fd(c,1);
-    }
+		fmt->box = (fmt->width) - 1;
+	fmt->len += fmt->box +1;
+	if (fmt->minus)
+	{
+		ft_putchar_fd(c, 1);
+		while (fmt->box--)
+			ft_putchar_fd(' ', 1);
+	}
+	else
+	{
+		while (fmt->box--)
+			ft_putchar_fd(' ', 1);
+		ft_putchar_fd(c, 1);
+	}
 }

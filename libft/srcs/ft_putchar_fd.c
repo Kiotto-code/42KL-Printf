@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printhexa.c                                     :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yichan <yichan@student.42kl.edu.my>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 20:40:09 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/28 22:08:32 by yichan           ###   ########.fr       */
+/*   Created: 2022/07/10 18:23:41 by yichan            #+#    #+#             */
+/*   Updated: 2022/07/10 19:43:00 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void    ft_printhexa(unsigned long long nbr)
+void	ft_putchar_fd(char c, int fd)
 {
-    char *hexa;
-
-    hexa = "0123456789abcdef";
-    if (nbr/16)
-        ft_printhexa(nbr/16);
-    ft_putchar_fd(hexa[nbr%16], 1);
+	write (fd, &c, 1);
 }

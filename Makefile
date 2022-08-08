@@ -8,9 +8,12 @@ SRCS_FILES	=	ft_printf \
 				ft_printfc \
 				ft_prints \
 				ft_printfp \
-				ft_printfd \
 				ft_printfi \
+				ft_printfu \
+				ft_printfnbrextra \
 				ft_extrafunct \
+				ft_uitoa \
+				ft_printfx \
 
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
@@ -19,6 +22,7 @@ BONUS_FILES	=	ft_printf \
 				ft_prints \
 				ft_printfp \
 				ft_extrafunct \
+				ft_uitoa \
 
 				
 BONUS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))

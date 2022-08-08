@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 21:56:53 by yichan            #+#    #+#             */
-/*   Updated: 2022/07/30 21:49:45 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/08 14:40:34 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	state_setup(t_flag *fmt)
 {
 	fmt->width = 0;
 	fmt->precision = 0;
+	fmt->precisionstate = 0;
+	fmt->precisexist = 0;
 	fmt->hash = 0;
 	fmt->zero = 0;
 	fmt->minus = 0;
@@ -26,15 +28,19 @@ static void	state_setup(t_flag *fmt)
 	fmt->dot = 0;
 	fmt->box = 0;
 	fmt->hole = 0;
+	fmt->limit = 0;
 }
 
-//modified the format when go through flags instead of conversion-type
+/*/modified the format when go through flags instead of conversion-type*/
 static void	ft_subflag(char c, t_flag *fmt)
 {
 	if (ft_isdigit(c))
 	{
 		if (fmt->dot)
+		{
 			fmt->precision = fmt->precision * 10 + c - '0';
+			fmt->precisexist = 1;
+		}
 		else
 		{
 			if (!fmt->width && c == '0')
@@ -55,13 +61,13 @@ static void	ft_subflag(char c, t_flag *fmt)
 		fmt->dot += 1;
 }
 
-// go through all the character one by o
+/*// go through all the character one by o
 // ne to check its flag and conversion type
 // call subflag('ft_subflag') function
 //  if detect flags symbols
 // apply the relevant function when go 
-//through each conversion-type(using 'ft_strchr')
-static char *main_reader(char *str, t_flag *fmt)
+//through each conversion-type(using 'ft_strchr')**/
+static char	*main_reader(char *str, t_flag *fmt)
 {
 	while (*str && !ft_strchr("cspdiuxX%", *str))
 	{
@@ -75,21 +81,21 @@ static char *main_reader(char *str, t_flag *fmt)
 	else if (*str == 'p')
 		ft_printfp(fmt);
 	else if (*str == 'd')
-		ft_printfd(fmt);
+		ft_printfi(fmt);
 	else if (*str == 'i')
 		ft_printfi(fmt);
-	// else if (*str == 'u')
-	// else if (*str == 'x')
-	// else if (*str == 'X')
-	// else if (*str == '%')
-	return (str+1);
+	else if (*str == 'u')
+		ft_printfu(fmt);
+	else if (*str == 'x')
+		ft_printfx(fmt, "0123456789abcdef");
+	return (str +1);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	int		counter;
 	t_flag	*fmt;
-	
+
 	counter = 0;
 	fmt = malloc(sizeof(t_flag));
 	if (!fmt)
@@ -104,8 +110,8 @@ int	ft_printf(const char *str, ...)
 			str = main_reader((char *)str, fmt);
 			state_setup(fmt);
 		}
-		else if(++counter)
-			ft_putchar_fd(*str++,1);
+		else if (++counter)
+			ft_putchar_fd(*str++, 1);
 	}
 	va_end(fmt->args);
 	counter += fmt->len;
