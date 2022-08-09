@@ -27,8 +27,6 @@ BONUS_FILES	=	ft_printf \
 				
 BONUS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 BOBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
-# BONUS		= 	$(addprefix $(BONUS_DIR), $(addsuffix .c, $(BONUS_FILES)))
-# BOBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(BONUS_FILES)))
 SRCS_DIR	=	srcs/
 LIBFT_DIR	=	libft
 OBJS_DIR	=	objs/
@@ -45,8 +43,7 @@ $(OBJS_DIR)%.o: $(BONUS_DIR)%.c
 $(NAME):		mkdir_objs create_libft $(OBJS)
 				$(ARRC) $(NAME) $(OBJS)
 
-bonus:			mkdir_objs create_libft $(BOBJS)
-				$(ARRC) $(NAME) $(BOBJS)
+bonus:			all
 
 create_libft:
 				make -C $(LIBFT_DIR)
