@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 20:02:24 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/08 19:53:14 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/24 14:33:51 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static void	flagadjust(t_flag *fmt, long nbr, unsigned long absolute)
 		fmt->zero = 0;
 	if (fmt-> space && fmt->dot)
 		fmt->box--;
-	if (fmt->space && fmt->limit)
-		fmt->limit --;
 	if (fmt->zero && fmt->precision < fmt->width && fmt->precisexist)
 		fmt->zero = 0;
 	if ((fmt->plus && nbr >= 0))
@@ -66,8 +64,6 @@ void	ft_printfu(t_flag *fmt)
 		fulllen++;
 	absolute = ft_absolute(nbr);
 	nbrlen = ft_countlen(absolute, 10);
-	if (nbrlen > fmt->precision)
-		fmt->limit += fmt->precision;
 	fulllen += nbrlen;
 	if (fmt->precision >= nbrlen)
 		fmt->precision -= nbrlen;

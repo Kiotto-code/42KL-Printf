@@ -6,18 +6,15 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:04:07 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/04 18:59:13 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/08 21:22:11 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-void	ft_printfc(t_flag *fmt)
+void	ft_printfc(t_flag *fmt, char c)
 {
-	char	c;
-
-	c = va_arg(fmt->args, int);
 	if (fmt->width > fmt->precision)
 		fmt->box = (fmt->width) - 1;
 	fmt->len += fmt->box +1;

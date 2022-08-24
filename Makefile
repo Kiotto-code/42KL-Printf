@@ -17,20 +17,12 @@ SRCS_FILES	=	ft_printf \
 
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
-BONUS_FILES	=	ft_printf \
-				ft_printfc \
-				ft_prints \
-				ft_printfp \
-				ft_extrafunct \
-				ft_uitoa \
-
-				
+	
 BONUS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 BOBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
 SRCS_DIR	=	srcs/
 LIBFT_DIR	=	libft
 OBJS_DIR	=	objs/
-BONUS_DIR	=	bonus/
 
 all:			$(NAME)
 

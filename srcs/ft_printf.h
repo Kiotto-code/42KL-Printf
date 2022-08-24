@@ -6,7 +6,7 @@
 /*   By: yichan <yichan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 23:06:11 by yichan            #+#    #+#             */
-/*   Updated: 2022/08/08 20:08:40 by yichan           ###   ########.fr       */
+/*   Updated: 2022/08/24 14:31:08 by yichan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,11 @@ typedef struct s_flag
 	size_t		hole;
 	size_t		precisionstate;
 	size_t		precisexist;
-	long		limit;
 	char		*ascii;
 }	t_flag;
 
 int				ft_printf(const char *str, ...);
-void			ft_printfc(t_flag *fmt);
+void			ft_printfc(t_flag *fmt, char c);
 void			ft_printfs(t_flag *fmt);
 void			ft_printfp(t_flag *fmt);
 void			ft_printfd(t_flag *fmt);
