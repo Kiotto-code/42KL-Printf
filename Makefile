@@ -47,7 +47,7 @@ mkdir_objs:
 
 clean:
 				rm -rf $(OBJS_DIR)
-				make fclean -C $(LIBFT_DIR)
+				make clean -C $(LIBFT_DIR)
 
 fclean:			clean
 				rm -rf $(NAME)
